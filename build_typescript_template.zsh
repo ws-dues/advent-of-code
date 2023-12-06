@@ -11,7 +11,7 @@ build_typescript_template() {
       print "Error: no directory name provided.";
       exit 1;
     elif [[ -d $template_directory_name ]]; then
-      print "Error: $template_directory_name directory already exists";
+      print "Error: ${template_directory_name} directory already exists";
       exit 1;
     fi
 
@@ -19,25 +19,30 @@ build_typescript_template() {
     mkdir $template_directory_name;
 
     # add the initial files
-    local src=./$template_directory_name/src;
+    local src="./${template_directory_name}/src";
     mkdir $src;
 
     ## build initial application file
     touch $src/$template_directory_name.ts;
-    echo "const $template_directory_name = () => {
-  console.log('Do something, $template_directory_name');
+    echo "export const ${template_directory_name}Puzzle1 = () => {
+  console.log('Do something for puzzle 1, ${template_directory_name}');
 };
 
-export default $template_directory_name;" >> $src/$template_directory_name.ts;
+export const ${template_directory_name}Puzzle2 = () => {
+  console.log('Do something for puzzle 2, ${template_directory_name}');
+};
+" >> $src/$template_directory_name.ts;
 
     ## build initial index file
     touch $src/index.ts;
-    echo "import $template_directory_name from './$template_directory_name';
+    echo "import { ${template_directory_name}Puzzle1, ${template_directory_name}Puzzle2 } from './${template_directory_name}';
 
-$template_directory_name();" >> $src/index.ts;
+console.log('Solution to Puzzle 1: ', ${template_directory_name}Puzzle1());
+console.log('Solution to Puzzle 2: ', ${template_directory_name}Puzzle2());
+" >> $src/index.ts;
 
     # add Advent of Code files
-    touch ./input.txt;
+    touch ./$template_directory_name/input.txt;
 
     # initialize yarn package manager for project
     cd $template_directory_name;
@@ -54,7 +59,7 @@ $template_directory_name();" >> $src/index.ts;
     # initialize typescript configuration
     yarn tsc --init;
 
-    echo "Basic TypeScript project stubbed out in $template_directory_name";
+    echo "Basic TypeScript project stubbed out in ${template_directory_name}";
   #} #always {
     #if catch *; then
       #print "Caught some exception.";
