@@ -1,0 +1,14 @@
+{
+  "name": "Day3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node ./src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  }
+}
