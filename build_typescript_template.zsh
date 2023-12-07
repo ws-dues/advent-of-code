@@ -30,16 +30,14 @@ build_typescript_template() {
 
 export const ${template_directory_name}Puzzle2 = () => {
   console.log('Do something for puzzle 2, ${template_directory_name}');
-};
-" >> $src/$template_directory_name.ts;
+};" >> $src/$template_directory_name.ts;
 
     ## build initial index file
     touch $src/index.ts;
     echo "import { ${template_directory_name}Puzzle1, ${template_directory_name}Puzzle2 } from './${template_directory_name}';
 
 console.log('Solution to Puzzle 1: ', ${template_directory_name}Puzzle1());
-console.log('Solution to Puzzle 2: ', ${template_directory_name}Puzzle2());
-" >> $src/index.ts;
+console.log('Solution to Puzzle 2: ', ${template_directory_name}Puzzle2());" >> $src/index.ts;
 
     # add Advent of Code files
     touch ./$template_directory_name/input.txt;
